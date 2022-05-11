@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package test;
+
+// Structure
+message User {
+  int32 id = 1;
+  string email = 2;
+  string username = 3;
+  string password = 4;
+}
+
+// Requests
+message GetUserByIdRequest {
+  int32 id = 1;
+}
+
+message RegisterUserRequest {
+  User user = 1;
+}
+
+message LoginUserRequest {
+  User user = 1;
+}
+
+// Responses
+message UserResponse {
+  User user = 1;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+// message AllUsersResponse {
+//   repeated User users = 1;
+// }
+
+// Service
+service UserService {
+  rpc getUserById(GetUserByIdRequest) returns (UserResponse);
+  rpc registerUser(RegisterUserRequest) returns (UserResponse);
+  rpc loginUser(LoginUserRequest) returns (LoginResponse);
+  // rpc getAllUsers(GetUserByIdRequest) returns (UseResponse);
+}
